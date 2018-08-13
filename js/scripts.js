@@ -4,12 +4,9 @@ const monetaryUnit = 100;
 /**
  * @param amount | the amount of the coin
  * @param worth | the worth of the coin
- * @returns subTotal | total in cents
+ * @returns {number}
  */
-const calculateByCoin = function(amount, worth) {
-  let subTotal = amount * worth;
-  return subTotal;
-}
+const calculateByCoin = (amount, worth) => { return amount * worth };
 
 /**
  * @param object | object which holds a property with multiple named arrays for each coin type
@@ -21,7 +18,7 @@ const showCoinTypes = function(object) {
       coinTypes.push(coinNameByProperty);
     }
     return coinTypes;
-}
+};
 
 /**
  * Returns a list with a specific order (every two keys are merged into one)
