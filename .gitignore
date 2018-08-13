@@ -1,8 +1,11 @@
-# compiled output
+# Compiled output
 /dist
 
 # System Files
 .DS_Store
 
-# dependencies
+# Dependencies
 /node_modules
+
+# Editor settings
+/.idea
