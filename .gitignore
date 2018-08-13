@@ -1,5 +1,6 @@
 # Compiled output
 /dist
+/out
 
 # System Files
 .DS_Store
