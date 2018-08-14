@@ -6,7 +6,7 @@
   "scripts": {
     "start": "concurrently --kill-others \"webpack --watch\" \"node app.js\"",
     "test": "jest",
-    "jsdoc": "jsdoc js/index.js && node app.js"
+    "jsdoc": "jsdoc -c ./conf.json"
   },
   "author": "",
   "license": "ISC",

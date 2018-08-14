@@ -1,4 +1,5 @@
 /**
+ * @module lib/calculateByCoin
  * @param {number} amount The amount of the coin
  * @param {number} worth The worth of the coin
  * @returns {number}
