@@ -1,5 +1,7 @@
 # Cash Register
 
+Uses CommonJS pattern.
+
 ### Test
 
 To run the tests:

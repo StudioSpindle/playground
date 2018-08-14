@@ -1,104 +1,12 @@
 
-const monetaryUnit = 100;
+'use strict';
 
 import calculateByCoin from './lib/calculateByCoin';
-import showCoinTypes from './lib/showCoinTypes';
+import sortCoinsList from './lib/sortCoinsList';
+import { convertToPounds, convertToCents } from './lib/convertCurrency.js';
+import coinValidation from './lib/coinValidation';
+import calculateDependency from './lib/calculateDependency';
 
-/**
- * Returns a list with a specific order (every two keys are merged into one)
- * @param {object} object that should be rearranged
- * @returns {object} object which has been rearranged
- */
-function rearrangeList(obj) {
-    let result = [];
-    for(let i = 0; i < obj.length; i+= 2) {
-        result[obj[i+1][0]] = obj[i];
-    }
-    return result;
-}
-
-/**
- * @param object
- * @returns sorted array
- * @description takes an object and sorts it (to subtract the coin with the highest amount first)
- */
-function sortCoinsList(obj) {
-    let result = [];
-    for (let coin in obj) {
-        result.push([coin], obj[coin]);
-    }
-    result.sort((b, a) => a[1] - b[1]); // worth is on the second value (1)
-    result.reverse(); // start with largest first
-    result = rearrangeList(result);
-
-    return result;
-}
-
-/**
- * @param amount of money
- * 100 = devider to calculate pounds
- */
-const convertToPounds = (totalAmount) => parseFloat(totalAmount) / monetaryUnit;
-
-/**
- * @param amount of money
- * 100 = devider to calculate pounds
- */
-const convertToCents = (totalAmount) => parseFloat(totalAmount) * monetaryUnit;
-
-/**
- * coinValidation
- * @param object | takes in the object to which the parameters should apply
- * @param coinName | name of the coin to test against
- * @param callback | action to perform
- * @returns a callback with the object, coinType and the amount
- */
-const coinValidation = function(object, coinName, callback) {
-    let coinTypes = showCoinTypes(object.coins);
-    let coinType  = coinName.toLowerCase();
-
-    if (coinTypes.indexOf(`${coinType}`) > -1) {
-
-        if (typeof callback === "function") {
-            callback(object, coinType);
-        }
-
-    } else {
-        throw `The coin of type '${coinType}' does not exist. Please use one of the following: ${coinTypes}`;
-    }
-}
-
-/**
- * Returns an object based on a coin and remaining amount
- * @function  calcCapacity
- * @param     {string} amount | the amount of coins
- *            {string} worth | the worth of the coin
- *            {string} remainderTotal | Total of remaining amount tot calculate
- * @return    {object}
- *            - remaining | the amount of coins that can be subtracted without it overflowing the whole number
- *            - coinsSubtractet | the remaining amount of total
- */
-
-function calcCapacity(amount, worth, remainingTotal) {
-
-    let necessaryCoins = Math.floor(remainingTotal / worth); // rounded value
-    let necessaryCoinWorth = necessaryCoins * worth;
-
-    // skip the coin if the remainingTotal is not devidable by a single coin worth
-    if(necessaryCoins == 0) {
-        return {
-            remaining: remainingTotal, // return default remaining total for next coin
-            coinsSubtracted: 0
-        };
-    } else {
-        remainingTotal = (remainingTotal - necessaryCoinWorth);
-
-        return {
-            remaining: remainingTotal,
-            coinsSubtracted: necessaryCoins
-        };
-    }
-}
 
 /**
  * console logs the subtracted coins
@@ -208,7 +116,7 @@ let Cashregister = {
 
         for (let coin in sortedCoinsList) {
 
-            let coinCapacity = calcCapacity(sortedCoinsList[coin].amount, sortedCoinsList[coin].worth, remainingAmount);
+            let coinCapacity = calculateDependency(sortedCoinsList[coin].amount, sortedCoinsList[coin].worth, remainingAmount);
 
             // calculate remaining amount
             remainingAmount = coinCapacity.remaining;
