@@ -11,7 +11,7 @@
   "main": "index.js",
   "scripts": {
     "start": "concurrently --kill-others \"webpack --watch\" \"node app.js\"",
-    "webpack": "webpack",
+    "webpack": "webpack --watch",
     "test": "jest",
     "jsdoc": "jsdoc -c ./conf.json"
   },

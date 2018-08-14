@@ -3,23 +3,11 @@
 
 import calculateByCoin from './lib/calculateByCoin';
 import sortCoinsList from './lib/sortCoinsList';
-import { convertToPounds, convertToCents } from './lib/convertCurrency.js';
-import coinValidation from './lib/coinValidation';
+import { convertToPounds, convertToCents } from './lib/convertCurrency';
 import calculateDependency from './lib/calculateDependency';
+import logCoinsSubtracted from './lib/logCoinsSubtracted';
 
-
-/**
- * console logs the subtracted coins
- * @param amountSubstracted
- * @param worth
- */
-const logCoinsSubtracted = function(coinName, amountSubstracted, worth, total) {
-    console.log(`Log: Coins of type '${coinName}' substracted: '${amountSubstracted}' of worth '${worth}', for a total of '${total}'.`);
-}
-
-// 1. create empty object for the Til which can hold different kinds of coins
-// 2. define a lowest level common denominator, in this case the cent system
-// 3. fill the till with the coins
+import coinValidation from './lib/coinValidation';
 
 let Cashregister = {
 
