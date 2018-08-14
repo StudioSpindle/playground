@@ -9,7 +9,12 @@ import logCoinsSubtracted from './lib/logCoinsSubtracted';
 
 import coinValidation from './lib/coinValidation';
 
-let Cashregister = {
+/**
+ * Cashregister
+ * @const
+ * @type {{coins: {penny: {amount: number, worth: number}, nickel: {amount: number, worth: number}, dime: {amount: number, worth: number}, quarter: {amount: number, worth: number}, pound: {amount: number, worth: number}}, setCoin: Cashregister.setCoin, subtractByCoin: Cashregister.subtractByCoin, getAmountByCoin: Cashregister.getAmountByCoin, getCalculatedByCoin: Cashregister.getCalculatedByCoin, getTotalRegisterAmount: Cashregister.getTotalRegisterAmount, removeFromCashregister: Cashregister.removeFromCashregister}}
+ */
+const Cashregister = {
 
     coins: {
         penny: { amount: 0, worth: 1 },
@@ -20,26 +25,26 @@ let Cashregister = {
     },
 
     /**
-     * Setter, set's the coin value based on the coin's name
-     * @param coinName | the coin name
-     * @param amount | the amount that should be set
+     * setCoin
+     * @description Setter, set's the coin value based on the coin's name
+     * @param coinName The coin name
+     * @param amount The amount that should be set
      */
     setCoin: function(coinName, amount) {
-
         coinValidation(this, coinName, function(object, coinType){
             object.coins[coinType].amount = amount;
         });
     },
-
 
     subtractByCoin: function(coin, subtractBy) {
         this.coins[coin].amount -= subtractBy;
     },
 
     /**
-     * Getter, get coin by user input
-     * @param coinName | coin name based on user input
-     * @returns | A string with the amount of coins by coin type
+     * getAmountByCoin
+     * @description Getter, get coin by user input
+     * @param coinName Coin name based on user input
+     * @returns {*} A string with the amount of coins by coin type
      */
     getAmountByCoin: function(coinName) {
         let amount;
@@ -52,9 +57,10 @@ let Cashregister = {
     },
 
     /**
-     * Getter, get coin by user input
-     * @param coinName | coin name based on user input
-     * @returns | A string with the subtotal amount of cents per coin type
+     * getCalculatedByCoin
+     * @description Getter, get coin by user input
+     * @param coinName Coin name based on user input
+     * @returns {number} A string with the subtotal amount of cents per coin type
      */
     getCalculatedByCoin: function(coinName) {
         let coinSubTotal = 0;
@@ -67,8 +73,9 @@ let Cashregister = {
     },
 
     /**
-     * Getter
      * @returns the amount of money in pounds or cents (default)
+     * @param unit
+     * @returns {number} the amount of money in pounds or cents (default)
      */
     getTotalRegisterAmount: function(unit) {
         let totalInCents = 0;
@@ -77,18 +84,24 @@ let Cashregister = {
             totalInCents += this.getCalculatedByCoin(coin);
         }
 
-        if(unit == 'pounds') {
-            let totalInRegister = convertToPounds(totalInCents);
-            return totalInRegister;
+        if(unit === 'pounds') {
+            return convertToPounds(totalInCents); // total in register
         } else {
             return totalInCents;
         }
 
     },
 
+    /**
+     * removeFromCashRegister
+     * @param amountGiven
+     * @param unit
+     * @returns {string}
+     * @description Removes the cash from the register
+     */
     removeFromCashregister: function(amountGiven, unit = 'cents') {
 
-        if (unit == 'pounds') {
+        if (unit === 'pounds') {
             amountGiven = convertToCents(amountGiven);
         }
 
@@ -117,7 +130,7 @@ let Cashregister = {
             totalSubtracted += coinCapacity.coinsSubtracted * sortedCoinsList[coin].worth;
         }
     }
-}
+};
 
 Cashregister.setCoin('penny', '12');
 Cashregister.setCoin('nickel', '10');
