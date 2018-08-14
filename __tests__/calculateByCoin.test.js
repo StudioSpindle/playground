@@ -8,10 +8,14 @@ let coins = {
     pound: { amount: 3, worth: 100 }
 };
 
-test('calculate the total worth of coins combined by coin type', () => {
-    expect(calculateByCoin(coins.penny.amount, coins.penny.worth)).toBe(3);
-    expect(calculateByCoin(coins.nickel.amount, coins.nickel.worth)).toBe(15);
-    expect(calculateByCoin(coins.dime.amount, coins.dime.worth)).toBe(30);
-    expect(calculateByCoin(coins.quarter.amount, coins.quarter.worth)).toBe(75);
-    expect(calculateByCoin(coins.pound.amount, coins.pound.worth)).toBe(300);
+describe('calculateByCoin', () => {
+
+    it('calculates the total worth of coins combined by coin type', () => {
+        expect(calculateByCoin(coins.penny.amount, coins.penny.worth)).toBe(3);
+        expect(calculateByCoin(coins.nickel.amount, coins.nickel.worth)).toBe(15);
+        expect(calculateByCoin(coins.dime.amount, coins.dime.worth)).toBe(30);
+        expect(calculateByCoin(coins.quarter.amount, coins.quarter.worth)).toBe(75);
+        expect(calculateByCoin(coins.pound.amount, coins.pound.worth)).toBe(300);
+    });
+
 });

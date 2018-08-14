@@ -1,19 +1,8 @@
 
 const monetaryUnit = 100;
 
-import { calculateByCoin } from './lib/calculateByCoin';
-
-/**
- * @param object | object which holds a property with multiple named arrays for each coin type
- * @returns array ...
- */
-const showCoinTypes = function(object) {
-    let coinTypes = [];
-    for(let coinNameByProperty in object) {
-        coinTypes.push(coinNameByProperty);
-    }
-    return coinTypes;
-};
+import calculateByCoin from './lib/calculateByCoin';
+import showCoinTypes from './lib/showCoinTypes';
 
 /**
  * Returns a list with a specific order (every two keys are merged into one)

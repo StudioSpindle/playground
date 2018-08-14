@@ -1,9 +1,10 @@
 /**
+ * calculateByCoin module
  * @module lib/calculateByCoin
- * @param {number} amount The amount of the coin
+ * @param {number} quantity The number of coins
  * @param {number} worth The worth of the coin
- * @returns {number}
+ * @returns {number} The total worth of a coin by quantity
  */
-const calculateByCoin = (amount, worth) => { return amount * worth };
+const calculateByCoin = (quantity, worth) => { return quantity * worth };
 
 module.exports = calculateByCoin;
