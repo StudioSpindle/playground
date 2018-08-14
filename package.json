@@ -3,9 +3,7 @@
   "jest": {
     "verbose": true,
     "source": {
-      "include": ["js/", "js/lib"],
-      "includePattern": ".+\\.js(doc|x)?$",
-      "excludePattern": "(^|\\/|\\\\)_"
+      "include": ["js/", "js/lib"]
     }
   },
   "version": "1.0.0",
