@@ -10,7 +10,7 @@
  *
  */
 
-function calculateDependency(amount, worth, remainingTotal) {
+function calcCapacity(amount, worth, remainingTotal) {
 
     let necessaryCoins = Math.floor(remainingTotal / worth); // rounded value
     let necessaryCoinWorth = necessaryCoins * worth;
@@ -31,4 +31,4 @@ function calculateDependency(amount, worth, remainingTotal) {
     }
 };
 
-module.exports = calculateDependency;
+module.exports = calcCapacity;

@@ -4,7 +4,7 @@
 import calculateByCoin from './lib/calculateByCoin';
 import sortCoinsList from './lib/sortCoinsList';
 import { convertToPounds, convertToCents } from './lib/convertCurrency';
-import calculateDependency from './lib/calculateDependency';
+import calcCapacity from './lib/calcCapacity';
 import logCoinsSubtracted from './lib/logCoinsSubtracted';
 
 import coinValidation from './lib/coinValidation';
@@ -118,7 +118,7 @@ const Cashregister = {
 
         for (let coin in sortedCoinsList) {
 
-            let coinCapacity = calculateDependency(sortedCoinsList[coin].amount, sortedCoinsList[coin].worth, remainingAmount);
+            let coinCapacity = calcCapacity(sortedCoinsList[coin].amount, sortedCoinsList[coin].worth, remainingAmount);
 
             // calculate remaining amount
             remainingAmount = coinCapacity.remaining;
