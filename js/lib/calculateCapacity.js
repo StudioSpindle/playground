@@ -10,7 +10,7 @@
  *
  */
 
-function calcCapacity(amount, worth, remainingTotal) {
+function calculateCapacity(amount, worth, remainingTotal) {
 
     let necessaryCoins = Math.floor(remainingTotal / worth); // rounded value
     let necessaryCoinWorth = necessaryCoins * worth;
@@ -31,4 +31,4 @@ function calcCapacity(amount, worth, remainingTotal) {
     }
 };
 
-module.exports = calcCapacity;
+module.exports = calculateCapacity;
