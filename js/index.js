@@ -73,6 +73,7 @@ const Cashregister = {
     },
 
     /**
+     * getTotalRegisterAmount
      * @returns the amount of money in pounds or cents (default)
      * @param unit
      * @returns {number} the amount of money in pounds or cents (default)
