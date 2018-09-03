@@ -1,60 +1,61 @@
 
 'use strict';
 
-import calculateByCoin from './lib/calculateByCoin';
-import sortCoinsList from './lib/sortCoinsList';
-import { convertToPounds, convertToCents } from './lib/convertCurrency';
-import calculateCapacity from './lib/calculateCapacity';
-import logCoinsSubtracted from './lib/logCoinsSubtracted';
+// import calculateByCoin from './lib/calculateByCoin';
+// import sortCoinsList from './lib/sortCoinsList';
+// import { convertToPounds, convertToCents } from './lib/convertCurrency';
+// import calculateCapacity from './lib/calculateCapacity';
+// import logCoinsSubtracted from './lib/logCoinsSubtracted';
+//
+// import coinValidation from './lib/coinValidation';
 
-import coinValidation from './lib/coinValidation';
+interface Coin {
+    amount: number,
+    worth: number
+}
 
 /**
  * Cashregister
  * @constructor
  */
 class Cashregister {
-
-    penny: number;
+    private _penny: Coin;
+    private _nickel: Coin;
+    private _dime: Coin;
+    private _quarter: Coin;
+    private _pound: Coin;
 
     constructor(
-        pennyAmount: number
-        // penny = {amount: 0, worth: 1},
-        // nickel = {amount: 0, worth: 5},
-        // dime = {amount: 0, worth: 10},
-        // quarter = {amount: 0, worth: 25},
-        // pound = {amount: 0, worth: 100}
+        pennyAmount: number,
+        nickelAmount: number,
+        dimeAmount: number,
+        quarterAmount: number,
+        poundAmount: number
     ) {
-
-        this.penny = pennyAmount;
-
-        // TODO: Refactor so the class has a object coins which
-        // holds all the coins, and perhaps a object notes which
-        // holds all the banknotes
-        // this.coins = {}
-
-        // this.penny = penny;
-        // this.nickel = nickel;
-        // this.dime = dime;
-        // this.quarter = quarter;
-        // this.pound = pound;
+        this._penny = { amount: pennyAmount, worth: 1 };
+        this._nickel = { amount: nickelAmount, worth: 5 };
+        this._dime = { amount: dimeAmount, worth: 10 };
+        this._quarter = { amount: quarterAmount, worth: 25 };
+        this._pound = { amount: poundAmount, worth: 100 };
     }
-
 
     get numberOfPennies() {
-        return this.penny;
+        return this._penny.amount;
     }
 
-    set coinValue(coinType) {
-
+    set numberOfPennies(amount: number) {
+        this._penny.amount = amount;
     }
 
 }
 
 // const register1 = Object.create(Cashregister.prototype);
-const register1 = new Cashregister( 10 );
+let register1 = new Cashregister( 12, 10, 2, 12, 30 );
 
-console.log(register1.numberOfPennies);
+console.log(register1.numberOfPennies); // should output 12
+register1.numberOfPennies = 24;
+console.log(register1.numberOfPennies); // should output 24
+
 
     // /**
     //  * setCoin
@@ -166,15 +167,6 @@ console.log(register1.numberOfPennies);
     //     }
     // }
 
-
-
-
-
-// register1.setCoin('penny', '12');
-// register1.setCoin('nickel', '10');
-// register1.setCoin('dime', '2');
-// register1.setCoin('quarter', '12');
-// register1.setCoin('pound', '30');
 
 // // get amount based on object (create closed object later)
 // console.dir(`Total directly using the object property Cashregister.coins.penny.amount: ${Cashregister.coins.penny.amount}`);
