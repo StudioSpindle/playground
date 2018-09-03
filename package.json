@@ -3,7 +3,10 @@
   "jest": {
     "verbose": true,
     "source": {
-      "include": ["js/", "js/lib"]
+      "include": [
+        "js/",
+        "js/lib"
+      ]
     }
   },
   "version": "1.0.0",
@@ -27,6 +30,8 @@
     "concurrently": "^3.6.1",
     "jest": "^23.5.0",
     "jsdoc": "^3.5.5",
+    "ts-loader": "^5.0.0",
+    "typescript": "^3.0.3",
     "wepack": "0.0.1"
   }
 }
