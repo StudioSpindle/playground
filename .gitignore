@@ -37,3 +37,16 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Compiled output
+/dist
+/out
+
+# System Files
+.DS_Store
+
+# Dependencies
+/node_modules
+
+# Editor settings
+/.idea
