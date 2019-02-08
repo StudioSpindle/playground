@@ -65,6 +65,12 @@ router.get("/:qID", function(req, res, next) {
   res.json(req.question);
 });
 
+// GET /questions/:qID/answers
+// Route for questions collection
+router.get("/:qID/answers", function(req, res, next) {
+  res.json(req.question);
+});
+
 // POST /questions/:qID/answers
 // Route for creating an answer
 router.post("/:qID/answers", function(req, res, next) {
