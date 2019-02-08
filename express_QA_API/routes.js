@@ -6,10 +6,10 @@ var Question = require('./models').Question;
 
 // when qID is present this callback function will get executed
 router.param("qID", function(req, res, next, id) {
-  Question.findById(req.qID, function(err, doc){
+  Question.findById(id, function(err, doc){
     if (err) return next(err);
     if (!doc) {
-      err = new Error("Question not Found");
+      err = new Error(`Question not Found ${req.qID}`);
       err.status = 404;
       return next(err);
     }
@@ -56,10 +56,6 @@ router.post("/", function(req, res) {
     if(err) return next(err);
     res.status(201); // successfully created
     res.json(question);
-  });
-  res.json({
-    response: "You sent me a POST request",
-    body: req.body
   });
 });
 
