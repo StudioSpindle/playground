@@ -36,6 +36,7 @@ QuestionSchema.pre("save", function(next){
   next();
 });
 
-var Question = mongoose.model("Question", QuestionsSchema);
+// var Question = mongoose.model("Question", QuestionsSchema);
+var Question = mongoose.model("Question", QuestionSchema);
 
 module.exports.Question = Question;
