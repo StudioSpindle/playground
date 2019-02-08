@@ -32,7 +32,7 @@ app.use("/questions", routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error("Not found");
+  var err = new Error("Not found (General)");
   err.status = 404;
   next(err);
 });
