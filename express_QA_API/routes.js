@@ -33,16 +33,16 @@ router.param("aID", function(req, res, next, id) {
 router.get("/", function(req, res) {
 
   // example of using a callback in the find method of Mongoose
-  // Question.find({}, null, {sort: {createdAt: -1}} function(err, questions){
+  // Question.find({}, null, {sort: {createdAt: -1}}, function(err, questions){
   //   if (err) return next(err);
   //   res.json(questions);
   // });
 
   // example with Mongoose's query builder
   Question.find({})
-      .sort({createdAt: -1})
-      // .exec executes Mongoose query builder instead of a callback
+      .sort({ createdAt : -1 })
       .exec( function(err, questions) {
+        // .exec executes Mongoose query builder instead of a callback
         if (err) return next(err);
         res.json(questions);
       });
